@@ -8,9 +8,9 @@ def analyser_commande():
     parser = argparse.ArgumentParser(description="Création du menu pour aller chercher les symboles et les dates ")
     parser.add_argument('-symbole', metavar='Symboles...', type=str, nargs='+', help="Nom d'un symbole boursier")
     parser.add_argument('-h', '--help', action='help', help="show this help message and exit")
-    parser.add_argument('-d', '--date-debut', metavar='DATE', type=date, help="Date recherchée la plus ancienne (format: AAAA-MM-JJ)")
-    parser.add_argument('-f', '--date-fin', metavar='DATE', type=date, help="Date recherchée la plus récente (format: AAAA-MM-JJ)")
-    parser.add_argument('-v', '--valeur', metavar='Valeur', type=str, choices=['fermeture', 'ouverture', 'min', 'max', 'volume'], default='fermeture', help="La valeur désirée (par défaut: fermeture)")
+    parser.add_argument('-d', '--début', metavar='DATE ', type=date, help="Date recherchée la plus ancienne (format: AAAA-MM-JJ)")
+    parser.add_argument('-f', '--fin', metavar='DATE', type=date, help="Date recherchée la plus récente (format: AAAA-MM-JJ)")
+    parser.add_argument('-v', '--valeur', type=str, choices=['fermeture', 'ouverture', 'min', 'max', 'volume'], default='fermeture', help="La valeur désirée (par défaut: fermeture)")
     return parser.parse_args()
 
 
@@ -31,6 +31,12 @@ def produire_historique(symbole, date_debut, date_fin, valeur_desiree):
         resultats = [(date, values[valeur_desiree]) for date, values in historique.items]
         return resultats
 
+if __name__ == '__main__':
+    args = analyser_commande()
+    for symbole in args.symbole
+        date_debut = args.début or args.fin
+        date_fin = args.fin or str(date.today())
+    
 
 
    
